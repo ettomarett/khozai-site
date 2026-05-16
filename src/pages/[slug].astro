@@ -50,13 +50,13 @@ const chapterId = chapter.id;
   <nav class="chapter-nav" id="chapter-nav">
     {prev ? (
       <a href={`/${prev.id}`} class="prev">
-        <span class="nav-label">Previous</span>
+        <span class="nav-label">&larr; Previous</span>
         <span class="nav-title">{prev.data.shortTitle}</span>
       </a>
     ) : <span />}
     {next ? (
       <a href={`/${next.id}`} class="next">
-        <span class="nav-label">Next</span>
+        <span class="nav-label">Next &rarr;</span>
         <span class="nav-title">{next.data.shortTitle}</span>
       </a>
     ) : <span />}
@@ -166,7 +166,7 @@ const chapterId = chapter.id;
 
         if (idx > 1) {
           const prevBtn = document.createElement('button');
-          prevBtn.className = 'nav-btn';
+          prevBtn.className = 'nav-btn nav-prev';
           prevBtn.textContent = `← ${sections[idx - 2].title}`;
           prevBtn.onclick = () => showSection(idx - 1);
           topNav.appendChild(prevBtn);
@@ -182,7 +182,7 @@ const chapterId = chapter.id;
 
         if (idx < sections.length) {
           const nextBtn = document.createElement('button');
-          nextBtn.className = 'nav-btn';
+          nextBtn.className = 'nav-btn nav-next';
           nextBtn.textContent = `${sections[idx].title} →`;
           nextBtn.onclick = () => showSection(idx + 1);
           topNav.appendChild(nextBtn);
@@ -204,7 +204,7 @@ const chapterId = chapter.id;
 
         if (idx > 1) {
           const prevBtn2 = document.createElement('button');
-          prevBtn2.className = 'nav-btn';
+          prevBtn2.className = 'nav-btn nav-prev';
           prevBtn2.textContent = `← ${sections[idx - 2].title}`;
           prevBtn2.onclick = () => showSection(idx - 1);
           botInner.appendChild(prevBtn2);
@@ -220,7 +220,7 @@ const chapterId = chapter.id;
 
         if (idx < sections.length) {
           const nextBtn2 = document.createElement('button');
-          nextBtn2.className = 'nav-btn';
+          nextBtn2.className = 'nav-btn nav-next';
           nextBtn2.textContent = `${sections[idx].title} →`;
           nextBtn2.onclick = () => showSection(idx + 1);
           botInner.appendChild(nextBtn2);
@@ -394,5 +394,25 @@ const chapterId = chapter.id;
 
   .nav-btn.menu-btn:hover {
     background: #dfc06a;
+  }
+
+  @media (max-width: 600px) {
+    .nav-btn {
+      font-size: 0;
+      padding: 0.6rem 1rem;
+      min-width: 2.8rem;
+    }
+    .nav-btn::before {
+      font-size: 1rem;
+    }
+    .nav-btn.nav-prev::before {
+      content: '\2190';
+    }
+    .nav-btn.nav-next::before {
+      content: '\2192';
+    }
+    .nav-btn.menu-btn {
+      font-size: 0.82rem;
+    }
   }
 </style>
