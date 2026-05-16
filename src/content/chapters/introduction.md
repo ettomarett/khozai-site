@@ -10,7 +10,15 @@ part: "Prologue"
 
 Right now, as you read this sentence, the five largest companies on Earth are competing for the same resource: human attention. Not oil, not data, not compute. Attention. The ability to make a person stop scrolling, start watching, keep watching, and act on what they saw.
 
-Content drives the global economy at a scale most people never pause to calculate. YouTube pays creators over $70 billion. TikTok generates over $100 billion in annual revenue. Netflix, Disney, Amazon, and Apple collectively spend over $80 billion per year producing content. Digital advertising exceeded $600 billion globally in 2024. Behind every dollar is a bet: that this piece of content will capture and hold the attention of enough brains, for long enough, to produce value.
+Whoever controls attention controls everything that follows.
+
+A government that understands how to hold attention can shape public opinion on a war, an election, a policy - not by censoring opposition, but by making its own message neurally stickier, more emotionally resonant, harder to look away from. A corporation that understands attention can drive sales not by making a better product, but by engineering a stimulus that activates the viewer's reward circuitry at exactly the right moment to trigger a purchase decision. A creator who understands attention can turn views into revenue - not through luck, but through systematic knowledge of what makes a human brain keep watching for one more second, then one more after that.
+
+This is not hypothetical. It is happening at industrial scale.
+
+Content drives the global economy at a magnitude most people never pause to calculate. YouTube pays creators over $70 billion. TikTok generates over $100 billion in annual revenue. Netflix, Disney, Amazon, and Apple collectively spend over $80 billion per year producing content. Digital advertising exceeded $600 billion globally in 2024. Behind every dollar is a bet: that this piece of content will capture and hold the attention of enough brains, for long enough, to produce value.
+
+But the money is only the surface. Underneath the economics is something more fundamental: the ability to change what people believe, what they want, what they fear, and what they do. A thirty-second video that holds attention through the right emotional arc can shift a viewer's stance on a political issue more effectively than a thousand-page policy document. A product review that triggers the right neural signatures of trust and desire can drive more sales than a billboard seen by a million people. A public health message that engages the right cortical networks can change behavior in ways that pamphlets and posters never could. Attention is not just a metric. It is the gateway to influence, persuasion, and behavioral change at the scale of entire populations.
 
 And every one of those bets is made mostly blind.
 
@@ -18,9 +26,11 @@ Creators publish content and wait. They look at view counts, watch time, engagem
 
 Meanwhile, on the other side of the screen, the platforms know more than they share. Meta's recommendation systems decompose your content into hundreds of features, match it against individual viewer profiles, and predict - before anyone watches - whether this video will hold this specific person's attention. TikTok's algorithm evaluates your content within milliseconds of upload. YouTube's Gemini models process your video with multi-modal understanding that exceeds most human analysis. These systems work because they operate, implicitly, on the same neuroscience this book makes explicit: content engagement is not random. It is driven by measurable properties of a stimulus interacting with known systems in the human brain.
 
+The science behind this is not secret. The neuroscience of attention, reward, emotion, and decision-making has been published for decades. Brain encoding models are open-source. The research papers are freely available. But the knowledge is scattered across hundreds of journals, buried in technical language, disconnected from practical application. Nobody has put the picture together. Nobody has built the bridge between what neuroscience knows about the brain and what a creator, a strategist, or an organization can actually do with that knowledge.
+
 ![The creator's blind spot: on one side, a creator working in uncertainty; on the other, the platform's illuminated control room of dashboards, neural networks, and engagement data that creators never see.](/images/introduction/intro_img02_blind_spot.png)
 
-This book is about making that knowledge available to everyone.
+This book is about underlining the importance and the seriousness of this critical knowledge, putting the picture together, and presenting it in a way that anyone can understand.
 
 ## What you are about to learn
 
