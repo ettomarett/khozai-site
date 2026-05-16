@@ -1,0 +1,398 @@
+---
+import BookLayout from '../layouts/BookLayout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const chapters = await getCollection('chapters');
+  return chapters.map(ch => ({
+    params: { slug: ch.id },
+    props: { chapter: ch },
+  }));
+}
+
+const { chapter } = Astro.props;
+const { Content } = await render(chapter);
+
+const allChapters = (await getCollection('chapters')).sort((a, b) => a.data.order - b.data.order);
+const currentIndex = allChapters.findIndex(c => c.id === chapter.id);
+const prev = currentIndex > 0 ? allChapters[currentIndex - 1] : null;
+const next = currentIndex < allChapters.length - 1 ? allChapters[currentIndex + 1] : null;
+
+const chapterLabel = chapter.data.order === 0
+  ? 'Introduction'
+  : chapter.data.order === 14
+    ? 'Conclusion'
+    : `Chapter ${chapter.data.order}`;
+
+const chapterId = chapter.id;
+---
+
+<BookLayout title={`${chapter.data.title} - Khozai`}>
+  <div class="chapter-header">
+    <div class="chapter-number">{chapterLabel}</div>
+    <h1>{chapter.data.shortTitle}</h1>
+  </div>
+
+  <!-- Section card menu -->
+  <div id="section-menu" class="section-menu">
+    <div class="section-menu-inner">
+      <div class="card-grid" id="card-grid">
+        <!-- Cards injected by JS from h2 headings -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Full chapter content (sections extracted by JS) -->
+  <article class="chapter-content" id="chapter-content" data-chapter-id={chapterId}>
+    <Content />
+  </article>
+
+  <nav class="chapter-nav" id="chapter-nav">
+    {prev ? (
+      <a href={`/${prev.id}`} class="prev">
+        <span class="nav-label">Previous</span>
+        <span class="nav-title">{prev.data.shortTitle}</span>
+      </a>
+    ) : <span />}
+    {next ? (
+      <a href={`/${next.id}`} class="next">
+        <span class="nav-label">Next</span>
+        <span class="nav-title">{next.data.shortTitle}</span>
+      </a>
+    ) : <span />}
+  </nav>
+
+  <script define:vars={{ chapterId }}>
+    document.addEventListener('DOMContentLoaded', () => {
+      const content = document.getElementById('chapter-content');
+      const menu = document.getElementById('section-menu');
+      const grid = document.getElementById('card-grid');
+      const nav = document.getElementById('chapter-nav');
+
+      const h2s = content.querySelectorAll('h2');
+      if (h2s.length === 0) return;
+
+      // Split content into sections by h2
+      const sections = [];
+      h2s.forEach((h2, i) => {
+        const section = document.createElement('div');
+        section.className = 'chapter-section';
+        section.id = `section-${i + 1}`;
+        section.style.display = 'none';
+
+        // Collect all elements from this h2 until the next h2
+        let node = h2;
+        const nodes = [node];
+        while (node.nextElementSibling && node.nextElementSibling.tagName !== 'H2') {
+          node = node.nextElementSibling;
+          nodes.push(node);
+        }
+
+        nodes.forEach(n => section.appendChild(n));
+        sections.push({
+          el: section,
+          title: h2.textContent,
+          index: i + 1,
+        });
+      });
+
+      // Hide any remaining content before first h2
+      const preamble = [];
+      while (content.firstChild && !content.firstChild.classList?.contains('chapter-section')) {
+        if (content.firstChild.tagName === 'H2') break;
+        preamble.push(content.removeChild(content.firstChild));
+      }
+
+      // Append sections to content
+      sections.forEach(s => content.appendChild(s.el));
+
+      // Build card grid
+      sections.forEach((s, i) => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.setAttribute('data-section', s.index);
+
+        const num = document.createElement('div');
+        num.className = 'card-number';
+        num.textContent = s.index;
+
+        const title = document.createElement('div');
+        title.className = 'card-title';
+        title.textContent = s.title;
+
+        const preview = document.createElement('div');
+        preview.className = 'card-preview';
+        const img = document.createElement('img');
+        img.src = `/images/${chapterId}/${chapterId}_sec-${s.index}_preview.png`;
+        img.alt = `Preview of ${s.title}`;
+        img.loading = 'lazy';
+        img.onerror = function() { this.parentElement.style.display = 'none'; };
+        preview.appendChild(img);
+
+        card.appendChild(num);
+        card.appendChild(title);
+        card.appendChild(preview);
+        grid.appendChild(card);
+
+        card.addEventListener('click', () => showSection(s.index));
+      });
+
+      // Initially show menu, hide content
+      content.style.display = 'none';
+      nav.style.display = 'none';
+      menu.style.display = 'block';
+
+      function showSection(idx) {
+        menu.style.display = 'none';
+        content.style.display = 'block';
+
+        sections.forEach(s => {
+          s.el.style.display = s.index === idx ? 'block' : 'none';
+        });
+
+        // Show preamble only for first section
+        // (already removed from DOM, skip)
+
+        // Add section navigation
+        let existingNav = content.querySelector('.section-nav-bar');
+        if (existingNav) existingNav.remove();
+
+        const sectionNav = document.createElement('div');
+        sectionNav.className = 'section-nav-bar';
+
+        // Top nav
+        const topNav = document.createElement('div');
+        topNav.className = 'section-nav top-nav';
+
+        if (idx > 1) {
+          const prevBtn = document.createElement('button');
+          prevBtn.className = 'nav-btn';
+          prevBtn.textContent = `← ${sections[idx - 2].title}`;
+          prevBtn.onclick = () => showSection(idx - 1);
+          topNav.appendChild(prevBtn);
+        } else {
+          topNav.appendChild(document.createElement('span'));
+        }
+
+        const menuBtn = document.createElement('button');
+        menuBtn.className = 'nav-btn menu-btn';
+        menuBtn.textContent = 'Menu';
+        menuBtn.onclick = showMenu;
+        topNav.appendChild(menuBtn);
+
+        if (idx < sections.length) {
+          const nextBtn = document.createElement('button');
+          nextBtn.className = 'nav-btn';
+          nextBtn.textContent = `${sections[idx].title} →`;
+          nextBtn.onclick = () => showSection(idx + 1);
+          topNav.appendChild(nextBtn);
+        } else {
+          topNav.appendChild(document.createElement('span'));
+        }
+
+        sectionNav.appendChild(topNav);
+        content.insertBefore(sectionNav, sections[0].el);
+
+        // Bottom nav (clone)
+        let existingBot = content.querySelector('.section-nav-bar.bottom');
+        if (existingBot) existingBot.remove();
+
+        const botNav = document.createElement('div');
+        botNav.className = 'section-nav-bar bottom';
+        const botInner = document.createElement('div');
+        botInner.className = 'section-nav';
+
+        if (idx > 1) {
+          const prevBtn2 = document.createElement('button');
+          prevBtn2.className = 'nav-btn';
+          prevBtn2.textContent = `← ${sections[idx - 2].title}`;
+          prevBtn2.onclick = () => showSection(idx - 1);
+          botInner.appendChild(prevBtn2);
+        } else {
+          botInner.appendChild(document.createElement('span'));
+        }
+
+        const menuBtn2 = document.createElement('button');
+        menuBtn2.className = 'nav-btn menu-btn';
+        menuBtn2.textContent = 'Menu';
+        menuBtn2.onclick = showMenu;
+        botInner.appendChild(menuBtn2);
+
+        if (idx < sections.length) {
+          const nextBtn2 = document.createElement('button');
+          nextBtn2.className = 'nav-btn';
+          nextBtn2.textContent = `${sections[idx].title} →`;
+          nextBtn2.onclick = () => showSection(idx + 1);
+          botInner.appendChild(nextBtn2);
+        } else {
+          botInner.appendChild(document.createElement('span'));
+        }
+
+        botNav.appendChild(botInner);
+        const activeSection = sections.find(s => s.index === idx);
+        activeSection.el.appendChild(botNav);
+
+        // Show chapter prev/next nav at bottom too
+        nav.style.display = idx === sections.length ? 'flex' : 'none';
+
+        window.scrollTo(0, 0);
+      }
+
+      function showMenu() {
+        content.style.display = 'none';
+        nav.style.display = 'none';
+        menu.style.display = 'block';
+        window.scrollTo(0, 0);
+      }
+    });
+  </script>
+</BookLayout>
+
+<style is:global>
+  .section-menu {
+    display: none;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 2rem 3rem;
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(286px, 1fr));
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .card {
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    background: #13161e;
+    transition: all 0.25s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #a08535, #c9a84c, #a08535);
+    opacity: 0;
+    transition: opacity 0.25s;
+  }
+
+  .card:hover {
+    transform: translateY(-2px);
+    background: #191d28;
+    border-color: rgba(201,168,76,0.3);
+    box-shadow: 0 0 40px rgba(201,168,76,0.08);
+  }
+
+  .card:hover::before { opacity: 1; }
+
+  .card-number {
+    position: absolute;
+    top: 0.6rem;
+    left: 0.6rem;
+    background: rgba(201,168,76,0.15);
+    color: #c9a84c;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    font-weight: 700;
+    z-index: 2;
+  }
+
+  .card-title {
+    padding: 0.6rem 0.8rem 0.4rem 3rem;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: #e8e6e3;
+    z-index: 2;
+    background: #13161e;
+    min-height: calc(2 * 1.4em + 1rem);
+    display: flex;
+    align-items: center;
+  }
+
+  .card:hover .card-title { color: #dfc06a; }
+
+  .card-preview {
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .card-preview img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  .section-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    flex-wrap: wrap;
+  }
+
+  .section-nav.top-nav {
+    margin-bottom: 1.5rem;
+  }
+
+  .section-nav-bar.bottom .section-nav {
+    border-bottom: none;
+    border-top: 1px solid rgba(255,255,255,0.06);
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+  }
+
+  .nav-btn {
+    padding: 0.5rem 1.2rem;
+    background: transparent;
+    color: #c9a84c;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-family: inherit;
+    transition: all 0.2s;
+    max-width: 38%;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nav-btn:hover {
+    background: rgba(201,168,76,0.1);
+    border-color: #c9a84c;
+    color: #dfc06a;
+  }
+
+  .nav-btn.menu-btn {
+    background: #c9a84c;
+    color: #08090d;
+    border-color: #c9a84c;
+    flex-shrink: 0;
+    font-weight: 600;
+  }
+
+  .nav-btn.menu-btn:hover {
+    background: #dfc06a;
+  }
+</style>

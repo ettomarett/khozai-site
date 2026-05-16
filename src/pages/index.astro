@@ -1,0 +1,50 @@
+---
+import BookLayout from '../layouts/BookLayout.astro';
+import { getCollection } from 'astro:content';
+
+const chapters = (await getCollection('chapters')).sort((a, b) => a.data.order - b.data.order);
+
+const parts = [
+  { label: 'Prologue', chapters: chapters.filter(c => c.data.part === 'Prologue') },
+  { label: 'Part I — Foundation', chapters: chapters.filter(c => c.data.part === 'Part I: Foundation') },
+  { label: 'Part II — Measurement', chapters: chapters.filter(c => c.data.part === 'Part II: Measurement') },
+  { label: 'Part III — Experimentation', chapters: chapters.filter(c => c.data.part === 'Part III: Experimentation') },
+  { label: 'Part IV — Governance', chapters: chapters.filter(c => c.data.part === 'Part IV: Governance') },
+  { label: 'Part V — Reckoning', chapters: chapters.filter(c => c.data.part === 'Part V: Reckoning') },
+  { label: 'Epilogue', chapters: chapters.filter(c => c.data.part === 'Epilogue') },
+];
+
+function chapterDisplay(order: number): string {
+  if (order === 0) return 'I';
+  if (order === 14) return 'C';
+  return String(order);
+}
+---
+
+<BookLayout title="Khozai — Understanding Content Engagement Through Neuroscience">
+  <section class="hero">
+    <h1>KHOZAI</h1>
+    <p class="subtitle">
+      A formal framework connecting the physics of video content to the biology of the human brain to the behavior of real viewers.
+    </p>
+    <a href="/introduction" class="cta">START READING</a>
+  </section>
+
+  <section class="toc-section">
+    {parts.map(part => (
+      part.chapters.length > 0 && (
+        <div class="part-group">
+          <span class="part-label">{part.label}</span>
+          <div class="chapter-grid">
+            {part.chapters.map(ch => (
+              <a href={`/${ch.id}`} class="ch-card">
+                <span class="ch-card-num">{chapterDisplay(ch.data.order)}</span>
+                <span class="ch-card-title">{ch.data.shortTitle}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    ))}
+  </section>
+</BookLayout>
