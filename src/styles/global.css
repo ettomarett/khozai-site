@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400&display=swap');
 
 :root {
   --bg-deep: #08090d;
@@ -373,6 +373,7 @@ body {
   margin: 2rem auto;
   border-radius: 6px;
   border: 1px solid var(--border);
+  content-visibility: auto;
 }
 
 /* ===== TABLES ===== */
