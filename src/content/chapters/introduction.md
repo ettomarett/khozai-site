@@ -4,7 +4,7 @@ shortTitle: "Introduction"
 order: 0
 part: "Prologue"
 ---
-![The global attention economy: billions of dollars flowing toward the competition for human attention, with content streams converging on the human brain from every direction.](/images/introduction/intro_img01_attention_economy.png)
+![The global attention economy: billions of dollars flowing toward the competition for human attention, with content streams converging on the human brain from every direction.](/images/introduction/intro_img01_attention_economy.webp)
 
 ## The most valuable knowledge in the world is knowledge about attention
 
@@ -28,7 +28,7 @@ Meanwhile, on the other side of the screen, the platforms know more than they sh
 
 The science behind this is not secret. The neuroscience of attention, reward, emotion, and decision-making has been published for decades. Brain encoding models are open-source. The research papers are freely available. But the knowledge is scattered across hundreds of journals, buried in technical language, disconnected from practical application. Nobody has put the picture together. Nobody has built the bridge between what neuroscience knows about the brain and what a creator, a strategist, or an organization can actually do with that knowledge.
 
-![The creator's blind spot: on one side, a creator working in uncertainty; on the other, the platform's illuminated control room of dashboards, neural networks, and engagement data that creators never see.](/images/introduction/intro_img02_blind_spot.png)
+![The creator's blind spot: on one side, a creator working in uncertainty; on the other, the platform's illuminated control room of dashboards, neural networks, and engagement data that creators never see.](/images/introduction/intro_img02_blind_spot.webp)
 
 This book is about underlining the importance and the seriousness of this critical knowledge, putting the picture together, and presenting it in a way that anyone can understand.
 
@@ -36,7 +36,7 @@ This book is about underlining the importance and the seriousness of this critic
 
 Khozai is a formal framework that connects the physical properties of video content to what happens inside the viewer's brain to what the viewer does afterward. Not metaphorically. Mechanistically. With numbers.
 
-![The Khozai pipeline: content flows from physics-level measurement through predicted brain activation to experience mapping and behavioral outcomes, with a feedback loop that makes each cycle more accurate.](/images/introduction/intro_img03_khozai_pipeline.png)
+![The Khozai pipeline: content flows from physics-level measurement through predicted brain activation to experience mapping and behavioral outcomes, with a feedback loop that makes each cycle more accurate.](/images/introduction/intro_img03_khozai_pipeline.webp)
 
 Here is what the framework does, stated plainly:
 
@@ -56,7 +56,7 @@ The result is a closed loop: measure content, predict brain response, generate v
 
 ## Why this knowledge is worth a fortune
 
-![Three high-stakes scientific bets: the physics layer, brain prediction, and engineered success, each representing a potential breakthrough in understanding content engagement.](/images/introduction/intro_img04_three_bets_fortune.png)
+![Three high-stakes scientific bets: the physics layer, brain prediction, and engineered success, each representing a potential breakthrough in understanding content engagement.](/images/introduction/intro_img04_three_bets_fortune.webp)
 
 Consider what becomes possible if even one of the framework's three central bets pays off.
 
@@ -72,7 +72,7 @@ And the knowledge compounds. Every experiment adds to the causal graph. Every mu
 
 ## The power, the danger, and why both matter
 
-![The dual-use reality: identical scientific tools feeding into constructive applications on one side and destructive applications on the other. Same knowledge, opposite intentions.](/images/introduction/intro_img05_dual_use.png)
+![The dual-use reality: identical scientific tools feeding into constructive applications on one side and destructive applications on the other. Same knowledge, opposite intentions.](/images/introduction/intro_img05_dual_use.webp)
 
 This book does not pretend that this knowledge is safe.
 
@@ -111,7 +111,7 @@ You should not read this book if you want quick tips, growth hacks, or a formula
 
 ## How this book is structured
 
-![The book's five-part architecture: Foundation (neuroscience and formal framework), Measurement (vectors and behavior), Experimentation (mutation and correlation), Governance (calibration), and Reckoning (limitations, applications, societal impact).](/images/introduction/intro_img06_book_structure.png)
+![The book's five-part architecture: Foundation (neuroscience and formal framework), Measurement (vectors and behavior), Experimentation (mutation and correlation), Governance (calibration), and Reckoning (limitations, applications, societal impact).](/images/introduction/intro_img06_book_structure.webp)
 
 The thirteen chapters build a complete system from the ground up. Each chapter introduces concepts and vocabulary that later chapters use. Reading in order is recommended.
 

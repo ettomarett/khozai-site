@@ -123,7 +123,7 @@ const chapterId = chapter.id;
         const preview = document.createElement('div');
         preview.className = 'card-preview';
         const img = document.createElement('img');
-        img.src = `/images/${chapterId}/${chapterId}_sec-${s.index}_preview.png`;
+        img.src = `/images/${chapterId}/${chapterId}_sec-${s.index}_preview.webp`;
         img.alt = `Preview of ${s.title}`;
         img.loading = 'lazy';
         img.onerror = function() { this.parentElement.style.display = 'none'; };

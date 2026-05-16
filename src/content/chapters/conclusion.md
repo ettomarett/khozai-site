@@ -4,7 +4,7 @@ shortTitle: "Conclusion"
 order: 14
 part: "Epilogue"
 ---
-![The complete Khozai system: an interconnected engineering schematic showing content analysis, brain prediction, mutation, behavioral measurement, correlation, and calibration governance modules flowing in a closed loop.](/images/conclusion/conclusion_img01_complete_system.png)
+![The complete Khozai system: an interconnected engineering schematic showing content analysis, brain prediction, mutation, behavioral measurement, correlation, and calibration governance modules flowing in a closed loop.](/images/conclusion/conclusion_img01_complete_system.webp)
 
 ## What you now hold
 
@@ -30,7 +30,7 @@ This is the machine. It has been designed. It has not yet run.
 
 ## Three questions waiting for answers
 
-![Three unanswered scientific questions: physics (crystalline light), brain prediction (neural tissue), and engineered success (mechanical gears), each casting shadows that overlap in a glow of potential answers.](/images/conclusion/conclusion_img02_three_questions.png)
+![Three unanswered scientific questions: physics (crystalline light), brain prediction (neural tissue), and engineered success (mechanical gears), each casting shadows that overlap in a glow of potential answers.](/images/conclusion/conclusion_img02_three_questions.webp)
 
 Everything in this book converges on three empirical questions that thirteen chapters of architecture cannot answer. Only experiments can.
 
@@ -60,7 +60,7 @@ The framework's value is not all-or-nothing. Even its most cautious interpretati
 
 ## The asymmetry this book was built to fight
 
-![A fortress of platform knowledge being challenged by open understanding: light from an open book illuminates the inner workings of the data citadel, creating cracks of transparency in the wall.](/images/conclusion/conclusion_img03_asymmetry_fight.png)
+![A fortress of platform knowledge being challenged by open understanding: light from an open book illuminates the inner workings of the data citadel, creating cracks of transparency in the wall.](/images/conclusion/conclusion_img03_asymmetry_fight.webp)
 
 The platforms understand your content at a level they will never share with you.
 
@@ -74,7 +74,7 @@ That was the intention from the beginning. Not democratization as a slogan, but 
 
 ## What comes next
 
-![A newly built machine about to be activated for the first time: empty graphs and coordinate systems wait to be filled with data, while ghostly outlines of future causal networks hover in anticipation.](/images/conclusion/conclusion_img04_what_comes_next.png)
+![A newly built machine about to be activated for the first time: empty graphs and coordinate systems wait to be filled with data, while ghostly outlines of future causal networks hover in anticipation.](/images/conclusion/conclusion_img04_what_comes_next.webp)
 
 The machine has been designed. The next phase is operation.
 
