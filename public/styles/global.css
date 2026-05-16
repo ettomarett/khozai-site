@@ -94,7 +94,6 @@ body {
 .hero {
   background: var(--bg);
   padding: 6rem 2rem 3rem;
-  text-align: center;
   position: relative;
   overflow: hidden;
 }
@@ -109,6 +108,32 @@ body {
   height: 600px;
   background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
   pointer-events: none;
+}
+
+.hero-inner {
+  max-width: var(--wide-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.hero-text {
+  flex: 1;
+  position: relative;
+}
+
+.hero-cover {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.hero-cover img {
+  width: 280px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.5), 0 0 60px rgba(201,168,76,0.08);
+  border: 1px solid rgba(255,255,255,0.06);
 }
 
 .hero h1 {
@@ -127,9 +152,9 @@ body {
   font-size: 1.15rem;
   color: var(--text-secondary);
   max-width: 640px;
-  margin: 0 auto 2.5rem;
   line-height: 1.7;
   font-weight: 300;
+  margin-bottom: 2.5rem;
 }
 
 .hero .cta {
@@ -527,6 +552,9 @@ body {
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
+  .hero-inner { flex-direction: column-reverse; gap: 2rem; }
+  .hero-text { text-align: center; }
+  .hero-cover img { width: 200px; }
   .hero h1 { font-size: 2.8rem; }
   .hero .subtitle { font-size: 1rem; }
   .chapter-header h1 { font-size: 2rem; }
