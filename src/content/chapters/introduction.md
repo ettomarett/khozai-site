@@ -4,6 +4,21 @@ shortTitle: "Introduction"
 order: 0
 part: "Prologue"
 ---
+
+## Khozai
+
+In ancient Hebrew, the word חוזה - transliterated as Chozeh, Hozai, or Khozai - means *seer*. Not a fortune-teller. Not a mystic. A seer: one who perceives what is happening beneath the surface of things, who looks where others look and sees what others miss.
+
+In the Hebrew Bible, the Khozai were distinct from ordinary prophets. A prophet delivered a message. A seer perceived a reality - saw the forces, the patterns, the mechanisms that others experienced only as effects. The prophet told you what to do. The seer showed you what was actually going on.
+
+That distinction is the entire premise of this book.
+
+Every day, billions of people watch content and feel something - interest, boredom, desire, trust, urgency. They experience the effects. But the mechanisms that produce those effects - the way a stimulus enters the eye, activates specific neural populations, triggers emotional and motivational circuits, and emerges as a behavioral decision - remain invisible. The viewer feels compelled to keep watching. They do not see why.
+
+The platforms see why. They have built billion-dollar systems to see why. This book is about building that same sight for yourself.
+
+Khozai is not a product. It is not software. It is a framework for becoming a seer of attention - for looking at a piece of content and perceiving, with precision, what it will do to a human brain and why.
+
 ![The global attention economy: billions of dollars flowing toward the competition for human attention, with content streams converging on the human brain from every direction.](/images/introduction/intro_img01_attention_economy.webp)
 
 ## The most valuable knowledge in the world is knowledge about attention
